@@ -21,7 +21,7 @@ namespace WebStore_2020
 
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +37,11 @@ namespace WebStore_2020
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    );
+
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync(helloMsg);
