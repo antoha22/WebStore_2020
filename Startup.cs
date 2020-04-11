@@ -23,7 +23,7 @@ namespace WebStore_2020
         {
             services.AddMvc();
         }
-
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
