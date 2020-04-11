@@ -41,11 +41,14 @@ namespace WebStore_2020
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
-
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync(helloMsg);
-                });
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Cigarette}/{action=ReturnList}/{id?}"
+                //    );
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync(helloMsg);
+                //});
             });
 
         }
