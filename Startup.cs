@@ -31,6 +31,8 @@ namespace WebStore_2020
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             string helloMsg = configuration["CustomHelloWorld"];

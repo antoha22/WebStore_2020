@@ -1,21 +1,23 @@
-﻿@model IEnumerable<WebStore_2020.Models.EmployeeViewModel>
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "Домашняя";
 }
 
-<h1>Hello from my first view</h1>
+@await Html.PartialAsync("Partial/_Slider");
 
-<table class="table">
-@foreach (var item in Model) 
-{
-    <tr>
-        <td>@item.FirstName</td>
-        <td>@item.SecondName</td>
-        <td>@item.Patronymic</td>
-        <td>
-            @Html.ActionLink("Детали", "Details", new { id = item.Id });
-        </td>
-    </tr>
-}
-</table>>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                @await Html.PartialAsync("Partial/_LeftSideBar");
+            </div>
 
+            <div class="col-sm-9 padding-right">
+                @await Html.PartialAsync("Partial/_FeaturesItems");
+
+                @await Html.PartialAsync("Partial/_Category");
+
+                @await Html.PartialAsync("Partial/_RecommendedItems");
+            </div>
+        </div>
+    </div>
+</section>
