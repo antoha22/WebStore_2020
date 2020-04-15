@@ -31,6 +31,8 @@ namespace WebStore_2020
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             string helloMsg = configuration["CustomHelloWorld"];
@@ -39,7 +41,7 @@ namespace WebStore_2020
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    pattern: "{controller=Employee}/{action=Index}/{id?}"
                     );
                 //endpoints.MapControllerRoute(
                 //    name: "default",
