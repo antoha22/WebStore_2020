@@ -27,5 +27,35 @@ namespace WebStore_2020.Controllers
         {
             return View();
         }
+
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
+
+        public IActionResult ContactUs() 
+        {
+            return View();
+        }
+
+        public IActionResult Login() 
+        {
+            return View();
+        }
+
+        public IActionResult CustomNotFound() 
+        {
+            return View();
+        }
+
+        public IActionResult ProductDetails() 
+        {
+            return View();
+        }
+
+        public IActionResult Shop() 
+        {
+            return View();
+        }
     }
 }
