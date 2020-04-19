@@ -31,6 +31,7 @@ namespace WebStore_2020
             });
 
             services.AddSingleton<IEmployeeService, InMemoryEmployeeService>();
+            services.AddSingleton<ICigaretteService, InMemoryCiggaretsService>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
