@@ -11,8 +11,6 @@ namespace WebStore_2020.Controllers
     [Route("users")]
     public class EmployeeController : Controller
     {
-        List<EmployeeViewModel> employees;
-
         private readonly IEmployeeService employeeService;
 
         public EmployeeController(IEmployeeService employeeService)
@@ -31,6 +29,41 @@ namespace WebStore_2020.Controllers
         public IActionResult Details(int id) 
         {
             return View(employeeService.GetById(id));
+        }
+
+        [Route("edit/{id?}")]
+        public IActionResult Edit(int? id) 
+        {
+            if (!id.HasValue)
+                return View(new EmployeeViewModel());
+            var model = employeeService.GetById(id.Value);
+            if (model == null)
+                return NotFound();
+            return View(model);
+        }
+
+        [Route("edit/{id?}")]
+        [HttpPost]
+        public IActionResult Edit(EmployeeViewModel model)
+        {
+            if (model != null && model.Id > 0)
+            {
+                EmployeeViewModel currentModel = employeeService.GetById(model.Id);
+                if (!ReferenceEquals(currentModel, null))
+                {
+                    currentModel.Id = model.Id;
+                    currentModel.FirstName = model.FirstName;
+                    currentModel.SecondName = model.SecondName;
+                    currentModel.Patronymic = model.Patronymic;
+                    currentModel.Position = model.Position;
+                }
+            }
+            else
+            {
+                employeeService.AddNew(model);
+            }
+            employeeService.Commit();//transaction to database. currently not actual
+            return RedirectToAction(nameof(Index));
         }
     }
 }

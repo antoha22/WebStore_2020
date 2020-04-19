@@ -37,6 +37,7 @@ namespace WebStore_2020.Infrastructure.Services
 
         public void AddNew(EmployeeViewModel model)
         {
+            model.Id = employees.Max(employee => employee.Id) + 1;
             employees.Add(model);
         }
 
