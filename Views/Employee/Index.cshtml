@@ -5,11 +5,13 @@
 }
 
 <h1>Hello from my first view</h1>
+<a asp-action="Edit" class="btn-success">Добавить пользователя в список.</a>
 
 <table class="table">
 @foreach (var item in Model) 
 {
     <tr>
+        <td><a asp-action="Edit" asp-route-id="@item.Id">Редактировать пользователя<i class="fa fa-edit"></i></a></td>
         <td>@item.FirstName</td>
         <td>@item.SecondName</td>
         <td>@item.Patronymic</td>

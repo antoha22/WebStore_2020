@@ -1,10 +1,10 @@
 ﻿@using WebStore_2020.Models;
 @model Ciggarets;
 
-<h1>@Model.Label</h1>
+<h1>@Model?.Label</h1>
 <ul>
-    <li>Модель @Model.Model</li>
-    <li>Цена @Model.Cost</li>
-    <a href="../ReturnList">Назад к списку</a>
+    <li>Модель @Model?.Model</li>
+    <li>Цена @Model?.Cost</li>
+    <a asp-action="ReturnList">Назад к списку</a>
 </ul>
 

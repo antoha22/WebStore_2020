@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using WebStore_2020.Infrastructure;
+using WebStore_2020.Infrastructure.Interfaces;
+using WebStore_2020.Infrastructure.Services;
 
 namespace WebStore_2020
 {
@@ -21,7 +24,14 @@ namespace WebStore_2020
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options => 
+            {
+                //options.Filters.Add(typeof(SimpleActionFilter));
+                //options.Filters.Add(new SimpleActionFilter());
+            });
+
+            services.AddSingleton<IEmployeeService, InMemoryEmployeeService>();
+            services.AddSingleton<ICigaretteService, InMemoryCiggaretsService>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,9 +43,13 @@ namespace WebStore_2020
 
             app.UseStaticFiles();
 
+            app.Map("/index", CustomIndexHandler);
+
             app.UseRouting();
 
             string helloMsg = configuration["CustomHelloWorld"];
+
+            //app.UseMvcWithDefaultRoute(); альтернатива коду ниже
 
             app.UseEndpoints(endpoints =>
             {
@@ -53,6 +67,14 @@ namespace WebStore_2020
                 //});
             });
 
+        }
+
+        private void CustomIndexHandler(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello");
+            });
         }
     }
 }
