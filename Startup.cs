@@ -33,9 +33,13 @@ namespace WebStore_2020
 
             app.UseStaticFiles();
 
+            app.Map("/index", CustomIndexHandler);
+
             app.UseRouting();
 
             string helloMsg = configuration["CustomHelloWorld"];
+
+            //app.UseMvcWithDefaultRoute(); альтернатива коду ниже
 
             app.UseEndpoints(endpoints =>
             {
@@ -53,6 +57,14 @@ namespace WebStore_2020
                 //});
             });
 
+        }
+
+        private void CustomIndexHandler(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello");
+            });
         }
     }
 }
