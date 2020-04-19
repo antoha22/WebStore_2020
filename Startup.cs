@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using WebStore_2020.Infrastructure;
+using WebStore_2020.Infrastructure.Interfaces;
+using WebStore_2020.Infrastructure.Services;
 
 namespace WebStore_2020
 {
@@ -21,7 +24,13 @@ namespace WebStore_2020
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options => 
+            {
+                //options.Filters.Add(typeof(SimpleActionFilter));
+                //options.Filters.Add(new SimpleActionFilter());
+            });
+
+            services.AddSingleton<IEmployeeService, InMemoryEmployeeService>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
