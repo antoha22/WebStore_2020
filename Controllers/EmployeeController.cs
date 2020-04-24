@@ -65,5 +65,11 @@ namespace WebStore_2020.Controllers
             employeeService.Commit();//transaction to database. currently not actual
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int id) 
+        {
+            employeeService.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
