@@ -6,7 +6,7 @@ using WebStore.Domain.Entities;
 
 namespace WebStore_2020.Infrastructure.Interfaces
 {
-    interface IProductService
+    public interface IProductService
     {
         IEnumerable<Category> GetCategories();
         IEnumerable<Brand> GetBrands();
