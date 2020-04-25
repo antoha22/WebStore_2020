@@ -32,6 +32,7 @@ namespace WebStore_2020
 
             services.AddSingleton<IEmployeeService, InMemoryEmployeeService>();
             services.AddSingleton<ICigaretteService, InMemoryCiggaretsService>();
+            services.AddSingleton<IProductService, InMemoryProductService>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -57,14 +58,6 @@ namespace WebStore_2020
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{controller=Cigarette}/{action=ReturnList}/{id?}"
-                //    );
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync(helloMsg);
-                //});
             });
 
         }
