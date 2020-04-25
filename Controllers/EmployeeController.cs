@@ -46,6 +46,11 @@ namespace WebStore_2020.Controllers
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel model)
         {
+            if (!ModelState.IsValid) 
+            {
+                return View(model);
+            }
+
             if (model != null && model.Id > 0)
             {
                 EmployeeViewModel currentModel = employeeService.GetById(model.Id);
