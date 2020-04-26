@@ -46,6 +46,11 @@ namespace WebStore_2020.Controllers
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel model)
         {
+            if (!ModelState.IsValid) 
+            {
+                return View(model);
+            }
+
             if (model != null && model.Id > 0)
             {
                 EmployeeViewModel currentModel = employeeService.GetById(model.Id);
@@ -63,6 +68,12 @@ namespace WebStore_2020.Controllers
                 employeeService.AddNew(model);
             }
             employeeService.Commit();//transaction to database. currently not actual
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int id) 
+        {
+            employeeService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
     }

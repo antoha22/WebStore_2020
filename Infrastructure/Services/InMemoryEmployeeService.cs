@@ -34,7 +34,6 @@ namespace WebStore_2020.Infrastructure.Services
                 },
             };
         }
-
         public void AddNew(EmployeeViewModel model)
         {
             model.Id = employees.Max(employee => employee.Id) + 1;
@@ -48,7 +47,7 @@ namespace WebStore_2020.Infrastructure.Services
 
         public void Delete(int id)
         {
-            employees.Remove(employees.FirstOrDefault(employee => employee.Id == id));
+            employees.Remove(GetById(id));
         }
 
         public IEnumerable<EmployeeViewModel> GetAll()
